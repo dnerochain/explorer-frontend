@@ -1,4 +1,4 @@
-const BASE_URL = "https://wallet-api.dnerochain.xyz";
+const BASE_URL = "https://dnero-bridge-rpc.dnerochain.xyz/rpc";
 
 const DEFAULT_HEADERS = {
     'Accept': 'application/json',
@@ -78,9 +78,21 @@ function POST(path, headers, queryParams, body) {
 }
 
 export default class Api {
-  static callSmartContract(body, queryParams) {
-    let path = "/smart-contract/call";
+  static callSmartContract(body, params) {
+    let path = params ? (params.url || '') : "";
+    let rawTransaction = body.data;
 
-    return POST(path, null, queryParams, body);
+    let data = {
+      jsonrpc: '2.0',
+      method: 'dnero.CallSmartContract',
+      params: [
+        {
+          "sctx_bytes": rawTransaction
+        }
+      ],
+      id: 1
+    };
+
+    return POST(path, null, {}, data);
   }
 }
