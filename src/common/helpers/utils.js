@@ -284,7 +284,7 @@ export async function fetchWDTokenTotalSupply() {
     return type;
   });
 
-  const address = "0xd528c9e3F2262671cf1b92b3D70bA96542f22b62"; //WDToken
+  const address = "0x94E5908b7197Acf7Cb88EB311c8B5D9A6d1253Eb"; //WDToken
 
   try {
     var abiCoder = new ethers.utils.AbiCoder();
